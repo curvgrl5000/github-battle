@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route } from 'react-router';
+import { Router, Route, Link, IndexRoute, hashHistory, browserHistory } from 'react-router';
 
 //var ReactRouter = require('react-router');
 // var Router = ReactRouter.Router;
@@ -10,10 +10,9 @@ var Main = require('../components/Main');
 var Home = require('../components/Home');
 
 var routes = (
-	<Router>
-		<Route path='/' component={Main}>
-			<Route path='/home' component={Home} />
-		</Route>
+	<Router history={browserHistory}>
+		<Route path='/' component={Main} />
+		<Route path='/home' component={Home} />
 	</Router>
 );
 
