@@ -7,3 +7,13 @@ ReactDOM.render(
 	routes,
 	document.getElementById('root')
 );
+
+var styles = {
+	transparentBg: {
+		background: 'transparent'
+	}
+}
+
+module.exports = styles;
+
+
