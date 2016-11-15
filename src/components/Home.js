@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React from 'react';
 var transparentBg = require('../').transparentBg;
 import { Link } from 'react-router';
