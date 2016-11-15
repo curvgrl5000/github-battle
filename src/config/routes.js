@@ -6,8 +6,9 @@ var Home = require('../components/Home');
 
 var routes = (
 	<Router history={browserHistory}>
-		<Route path='/' component={Main} />
-		<Route path='/home' component={Home} />
+		<Route path='/' component={Main} >
+		  <IndexRoute component={Home} />
+		</Route>  
 	</Router>
 );
 
