@@ -1,44 +1,55 @@
-import React from 'react';
-var transparentBg = require('../').transparentBg;
+var React = require('react');
+var Prompt = require('../components/Prompt');
 
 var PromptContainer = React.createClass({
-	getInitialState: function () {
-		return {
-			username: ''
-		}
-	},
-	onUpdateUser: function(e) {
-		this.setState({
-			username: e.target.value
-		})
-	},
-	
-	render: function () {
-		return (
-			<div className="jumbotron col-sm-6 col-sm-offset-3 text-center transparentBg">
-				<h1>{this.props.route.header}</h1>
-				<div className="col-sm-12">
-					<form>
-						<div className="form-group">
-							<input
-								className="form-control"
-								placeholder="Github Username"
-								onChange={this.onUpdateUser}
-								value={this.state.username}
-								type="text" />
-						</div>
-						<div className="form-group col-sm-4 col-sm-offset-4">
-								<button
-									className="btn btn-block btn-success"
-									type="submit">
-										Continue
-								</button>	
-						</div>
-					</form>
-				</div>
-			</div>
-		)
-	}
-});
+  contextTypes: {
+    router: React.PropTypes.object.isRequired
+  },
+
+  getInitialState: function() {
+    return {
+      username: ''
+    }
+  },
+
+  onUpdateUser: function(e) {
+    this.setState({
+      username: e.target.value
+    })
+  },
+
+  onSubmitUser: function(e) {
+    e.preventDefault();
+    this.setState({
+      username: ''
+    })
+
+    // go to /battle?playerOne=xxx&playerTwo=xxxx
+    if(this.props.routeParams.playerOne) {
+      this.context.router.push({
+        pathname: '/battle',
+        query: {
+          playerOne: this.props.routeParams.playerOne,
+          playerTwo: this.state.username
+        }
+      })
+
+    // else go to /playerTwo/:playerOne
+    } else {
+      this.context.router.push('/playerTwo/' + this.state.username)
+    }
+  },
+
+  render: function() {
+    return(
+      <Prompt
+        onSubmitUser={this.onSubmitUser}
+        onUpdateUser={this.onUpdateUser}
+        header={this.props.route.header}
+        username={this.state.username}
+      />
+    )
+  }
+})
 
 module.exports = PromptContainer;

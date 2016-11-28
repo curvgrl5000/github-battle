@@ -1,7 +1,15 @@
 var React = require('react');
 var ConfirmBattle = require("../components/ConfirmBattle");
+require('../utils/githubHelpers')
 
 var ConfirmBattleContainer = React.createClass ({
+	gitInitialState: function() {
+		return {
+			isLoading: true,
+			playersInfo: []
+		}
+	},
+
 	render: function() {
 		return (
 			<ConfirmBattle 
@@ -10,7 +18,6 @@ var ConfirmBattleContainer = React.createClass ({
 			/>
 		)
 	}
-
 })
 
 module.exports = ConfirmBattleContainer;

@@ -1,11 +1,12 @@
 body {
 	text-align: center;
-  margin: 25% auto;
+  margin: 5% auto;
   padding: 0;
   font-family: sans-serif;
   background-color: white;
 }
 
-transparentBg {
-		background: 'transparent';
+.jumbotron.col-sm-6.col-sm-offset-3.text-center.transparentBg,
+.jumbotron.col-sm-12.text-center.transparentBg {
+		background: transparent;
 }
