@@ -5,25 +5,23 @@ var PromptContainer = React.createClass({
   contextTypes: {
     router: React.PropTypes.object.isRequired
   },
-
   getInitialState: function() {
     return {
       username: ''
     }
   },
-
   onUpdateUser: function(e) {
     this.setState({
       username: e.target.value
     })
   },
-
   onSubmitUser: function(e) {
     e.preventDefault();
-    this.setState({
-      username: ''
-    })
-
+    var username = this.state.username;
+      this.setState({
+        username: ''
+      });
+    
     // go to /battle?playerOne=xxx&playerTwo=xxxx
     if(this.props.routeParams.playerOne) {
       this.context.router.push({
@@ -33,13 +31,11 @@ var PromptContainer = React.createClass({
           playerTwo: this.state.username
         }
       })
-
     // else go to /playerTwo/:playerOne
     } else {
       this.context.router.push('/playerTwo/' + this.state.username)
     }
   },
-
   render: function() {
     return(
       <Prompt
